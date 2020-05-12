@@ -77,7 +77,7 @@ ggplot(aes(x= Month),data = wnc2)+
 
 # Plot the month when a bike is rented in first 6 months of 2017
 ggplot(aes(x= Month),data = wnc2)+
-  geom_histogram(binwidth = 1, fill = brewer.pal(7, 'Blues'), col = 'black')+
+  geom_histogram(binwidth = 1, fill = brewer.pal(7, 'Greens'), col = 'black')+
   ggtitle('Histogram of Months a bike is rented in 2017 \n in NewYork, Washinghton and Chicago')+
   ylab('Count of bikes Rented')+
   scale_x_continuous(limits = c(0,6),breaks= seq(0,6,1)) # month 5(May): is the most common month
