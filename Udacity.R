@@ -1,9 +1,9 @@
-# Udacity Exercise - Bikeshare
+# Udacity Project 2 - Bikeshare
 
-## load lubridate package
+## Load lubridate package
 install.packages("lubridate")
 
-# load libraries (essential libraries)
+# Load essential libraries
 require(ggplot2)
 require(lubridate)
 require(RColorBrewer)
@@ -13,12 +13,12 @@ wash <- read.csv("C:/Users/freecomp/Desktop/R/washington.csv", header = TRUE)
 ny <- read.csv("C:/Users/freecomp/Desktop/R/new-york-city.csv", header = TRUE)
 chi <- read.csv("C:/Users/freecomp/Desktop/R/chicago.csv", header = TRUE)
 
-# get sense of the data by exploring first rows using head function
+# Get sense of the data by exploring first rows using head function
 head(wash)
 head(ny)  # include gender and birth year column
 head(chic) # include gender and birth year column
 
-# add a NA data for washington data so that all cites have same no.of variables
+# Add a NA data for washington data so that all cites have same no.of variables
 wash[,c("Gender","Birth.Year")] <- NA
 
 names(wash) # to confirm the new columns are added
@@ -32,7 +32,7 @@ chi[,"City"] <- "Chicago"
 wnc <- rbind(wash, ny, chi)
 
 
-### Question 1
+### Question 1: Explore most common hour a bike is rented
 # Extract the hour from our data
 dates <- as.POSIXlt(wnc$Start.Time)
 hours <- as.data.frame(hour(dates)) # extracting hour
@@ -82,7 +82,7 @@ ggplot(aes(x= Month),data = wnc2)+
   ylab('Count of bikes Rented')+
   scale_x_continuous(limits = c(0,6),breaks= seq(0,6,1)) # month 5(May): is the most common month
 
-# same plot for each city
+# Same plot for each city of the three cities
 # Plot the month when a bike is rented in first 6 months of 2017
 ggplot(aes(x= Month),data = wnc2)+
   geom_histogram(binwidth = 1, fill = "light green", col = 'black')+
