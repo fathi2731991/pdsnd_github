@@ -11,6 +11,7 @@ Statistical analysis and graphical representation of Bikeshare data
 chicago.csv
 new-york-city.csv
 washington.csv
+Udcaity.R
 
 ### Credits
 Thanks to Udacity for all their efforts!
