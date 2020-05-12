@@ -14,4 +14,5 @@ washington.csv
 Udcaity.R
 
 ### Credits
-Thanks to Udacity for all their efforts!
+Thanks to Udacity team for all their efforts!
+Thanks to my family for their support
