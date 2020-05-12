@@ -8,7 +8,6 @@ require(ggplot2)
 require(lubridate)
 require(RColorBrewer)
 
-
 ## Load the data of our 3 files for each city into workspace
 wash <- read.csv("C:/Users/freecomp/Desktop/R/washington.csv", header = TRUE)
 ny <- read.csv("C:/Users/freecomp/Desktop/R/new-york-city.csv", header = TRUE)
@@ -32,9 +31,10 @@ chi[,"City"] <- "Chicago"
 # New data with all three cities
 wnc <- rbind(wash, ny, chi)
 
-### Question 1 
+
+### Question 1
 # Extract the hour from our data
-dates <- as.POSIXlt(wnc$Start.Time) 
+dates <- as.POSIXlt(wnc$Start.Time)
 hours <- as.data.frame(hour(dates)) # extracting hour
 wnc2 <- wnc
 wnc2[,"Hour"] <- hours # Add new column hours
@@ -47,24 +47,22 @@ ggplot(aes(x= Hour),data = wnc2)+
   scale_x_continuous(limits = c(0,24),breaks= seq(0,24,2))
   # 8-9 is the hour when mosrt commonly a bike is hired
 
-
 # Descriptive statistics:
-summary(wnc2$Hour)  
-# Numeric variable by using sort function on a table      
+summary(wnc2$Hour)
+# Numeric variable by using sort function on a table
 sort(table(wnc2$Hour),decreasing = TRUE) # 81734 a bike is rented in all 3 cities
-
-
 
 # Plot the hour of the day when a bike is rented in each day for each city
 ggplot(aes(x= Hour),data = wnc2)+
   geom_histogram(binwidth = 1, col = 'light blue')+
   ggtitle('Histogram of Days Hours a bike is rented in \n Newyork, Washinghton and Chicago')+
 scale_x_continuous(limits = c(0,24),breaks= seq(0,24,2))+
-facet_wrap(~ City) 
+facet_wrap(~ City)
 # variation in most common hour across 3 cities: 8 in Washigton and 17 in chicago and NY
 
 #Desciptive statistics
 by(wnc2$Hour, wnc$City, summary)
+
 
 ### Question 2: Most common month a bike is rented
 m <- as.data.frame(month(dates)) # extracting the day
@@ -99,12 +97,15 @@ sort(table(wnc$Start.Station),decreasing = TRUE)[1]
 # we convert the variable of start station of all 3 cites into a table and sort it according to
 # the most repeated value which is Streeter Dr & Grand Ave :6911 times it is the starting station
 
+
 ### Question 4:average travel time for users in different cities
-by(wnc$Trip.Duration/60, wnc$City, mean) 
+by(wnc$Trip.Duration/60, wnc$City, mean)
 # divide by 60 so that result is in minute: Washington:20.6 min, NY:14.99, Chicago:15.6
+
 
 ### Question 5: What are the counts of each user type
 summary(wnc$User.Type)
+
 
 #### Question 6: What are the counts of each gender
 by(wnc$Gender, wnc$City, summary)
